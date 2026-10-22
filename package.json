@@ -1,0 +1,19 @@
+{
+  "name": "pickup-counter",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": ["backend", "frontend"],
+  "scripts": {
+    "dev": "concurrently -k -n API,WEB -c blue,green \"npm run dev -w backend\" \"npm run dev -w frontend\"",
+    "build": "npm run build -w backend && npm run build -w frontend",
+    "db:setup": "npm run db:setup -w backend",
+    "db:reset:k6": "npm run db:reset:k6 -w backend",
+    "test": "npm run test -w backend",
+    "test:integration": "npm run test:integration -w backend",
+    "send-webhook": "npm run send-webhook -w backend --",
+    "k6:test": "k6 run tests/k6/concurrency-test.js"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
